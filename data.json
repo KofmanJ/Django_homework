@@ -1,0 +1,56 @@
+[
+  {
+    "model": "catalog.product",
+    "pk": 8,
+    "fields": {
+      "product_name": "Яблоко",
+      "product_description": "Зеленое",
+      "product_image": "",
+      "category": 7,
+      "product_price": "110.00",
+      "date_created": "2023-12-22T20:45:17.915Z",
+      "date_last_modified": "2023-12-22T20:45:17.915Z",
+      "in_stock": true
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 7,
+    "fields": {
+      "category_name": "Фрукты",
+      "category_description": "Свежие"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 8,
+    "fields": {
+      "category_name": "Овощи",
+      "category_description": "Свежие"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 9,
+    "fields": {
+      "category_name": "Мясо",
+      "category_description": "Свежее"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 10,
+    "fields": {
+      "category_name": "Мясо",
+      "category_description": "Замороженное"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 11,
+    "fields": {
+      "category_name": "Овощи",
+      "category_description": "Замороженные"
+    }
+  }
+]
