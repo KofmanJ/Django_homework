@@ -5,7 +5,7 @@
 <div class="col-md-4">
     <div class="card mb-4 box-shadow">
         <img class="card-img-top"
-             src="/media/{{ object.product_image }}"
+             src="/media/{{ object.product_image }}" height="300"
              alt="Card image cap">
         <div class="card-body">
             <p class="card-text">
@@ -15,6 +15,7 @@
                 <span class="text-muted">{{ object|title|slice:":100" }}</span>
                 {% endif %}
             </p>
+            <h3 class="card-title pricing-card-title">{{ object.product_price }} руб.</h3>
             <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                     <button type="button" class="btn btn-sm btn-outline-secondary">Посмотреть</button>
