@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
 from catalog.models import Product
@@ -25,3 +26,10 @@ def contacts(request):
 
 def home(request):
     return render(request, 'catalog/home.html')
+
+
+def product(request, pk):
+    context = {
+        'object_list': Product.objects.filter(id=pk)
+    }
+    return render(request, 'catalog/product.html', context)
