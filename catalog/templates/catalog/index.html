@@ -7,7 +7,7 @@
         <img class="card-img-top"
              src="{{ object.product_image | product_image }}" height="300"
              alt="Card image cap">
-        <div class="card-body">
+        <div style="height: 170px;" class="card-body">
             <p class="card-text">
                 {% if object.in_stock %}
                 {{ object|title|slice:":100" }}
