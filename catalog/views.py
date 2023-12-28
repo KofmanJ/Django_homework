@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views import View
 from django.views.generic import ListView, DetailView
 
-from catalog.models import Product
+from catalog.models import Product, Category
 
 
 # Create your views here.
@@ -50,3 +50,15 @@ class ProductDetailView(DetailView):
             'object_list': Product.objects.filter(id=pk),
         }
         return render(request, 'catalog/product_detail.html', context)
+
+
+class ProductCategoryListView(ListView):
+    model = Product
+
+    def get_queryset(self):
+        category_pk = self.kwargs['pk']
+        return Product.objects.filter(category_id=category_pk)
+
+
+class CategoryListView(ListView):
+    model = Category
