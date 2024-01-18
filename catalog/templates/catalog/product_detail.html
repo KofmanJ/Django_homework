@@ -18,7 +18,9 @@
             <h3 class="card-title pricing-card-title">{{ object.product_price }} руб.</h3>
             <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                    <a href="/product_list/" class="btn btn-sm btn-outline-secondary">Вернуться</a>
+                    <form>
+                        <input type="button" class="btn btn-sm btn-outline-secondary" value="Вернуться" onclick="history.back()">
+                    </form>
                     <button type="button" class="btn btn-sm btn-outline-secondary">Купить</button>
                 </div>
             </div>
