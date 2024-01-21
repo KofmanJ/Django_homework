@@ -8,8 +8,11 @@
                 <form method="post">
                     {% csrf_token %}
                     <p>Хотите удалить блог "{{ object.blog_title }}"?</p>
-                    <button type="submit" class="btn btn-success">Подтвердить</button>
-                    <a href="{% url 'blog:blog_list' %}" class="btn btn-warning">Отмена</a>
+                    <form>
+                        <button type="submit" class="btn btn-success">Подтвердить</button>
+                        <span style="margin-left: 10px;"></span>
+                        <a href="{% url 'blog:blog_list' %}" class="btn btn-warning">Отмена</a>
+                    </form>
                 </form>
             </div>
         </div>
