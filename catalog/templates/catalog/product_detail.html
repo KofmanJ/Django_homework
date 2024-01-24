@@ -15,7 +15,11 @@
                 <span class="text-muted">{{ object|title|slice:":100" }}</span>
                 {% endif %}
             </p>
+            <h4 class="card-title pricing-card-title">{{ object.product_description }} </h4>
             <h3 class="card-title pricing-card-title">{{ object.product_price }} руб.</h3>
+            <div class="card-text">
+                {{ object.owner|default:"без продавца" }}
+            </div>
             <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                     <form>

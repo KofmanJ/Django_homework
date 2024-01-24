@@ -10,7 +10,7 @@
         <img class="card-img-top"
              src="{{ object.product_image | product_image }}" height="300"
              alt="Card image cap">
-        <div style="height: 185px;" class="card-body">
+        <div style="height: 230px;" class="card-body">
             <p class="card-text">
                 {% if object.in_stock %}
                 {{ object|title|slice:":100" }}
@@ -18,7 +18,10 @@
                 <span class="text-muted">{{ object|title|slice:":100" }}</span>
                 {% endif %}
             </p>
-            <h5 class="card-title pricing-card-title">{{ object.product_price }} руб.</h5>
+            <h5 class="card-title pricing-card-title">{{ object.product_price }} руб.</h5><br>
+            <div class="card-text">
+                {{ object.owner|default:"без продавца" }}
+            </div>
             {% for version in object.version_set.all %}
             {% if version.is_active %}
             <h6>Активная версия: {{ version.version_name }}</h6>
@@ -28,9 +31,11 @@
                 <div class="btn-group">
                     <a href="{% url 'catalog:product' object.pk %}"
                        class="btn btn-sm btn-outline-secondary">Посмотреть</a>
+                    {% if object.owner == request.user or request.user.is_superuser %}
                     <a href="{% url 'catalog:update_product' object.pk %}" class="btn btn-sm btn-outline-secondary">Изменить</a>
                     <a href="{% url 'catalog:delete_product' object.pk %}"
                        class="btn btn-sm btn-outline-danger">Удалить</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

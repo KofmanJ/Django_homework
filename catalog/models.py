@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 # Create your models here.
@@ -15,6 +16,7 @@ class Product(models.Model):
     date_last_modified = models.DateTimeField(auto_now=True, verbose_name='Дата последнего изменения записи')  # Automatically set
 
     in_stock = models.BooleanField(default=True, verbose_name='В наличии')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name='продавец')
 
     def __str__(self):
         return f'{self.product_name} - {self.product_description}'
