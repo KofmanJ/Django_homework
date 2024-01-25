@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 # from django.contrib.auth import get_user_model
 from django.contrib.auth.tokens import default_token_generator
 # from django.contrib.messages.views import SuccessMessageMixin
@@ -84,7 +85,7 @@ def invalid_token_view(request):
     return render(request, 'users/invalid_token.html')
 
 
-class ProfileView(UpdateView):
+class ProfileView(LoginRequiredMixin, UpdateView):
     model = User
     form_class = UserProfileForm
     success_url = reverse_lazy('users:profile')

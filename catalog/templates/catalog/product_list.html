@@ -2,9 +2,12 @@
 {% load my_tags_catalog %}
 {% block content %}
 <div class="col-12 mb-5">
+    {% if perms.catalog.add_product %}
     <a class="btn btn-outline-primary" href="{% url 'catalog:create_product' %}">Добавить продукт и версию</a>
+    {% endif %}
 </div>
 {% for object in object_list %}
+{% if object.is_published or user.is_staff or user.is_superadmin %}
 <div class="col-md-4">
     <div class="card mb-4 box-shadow">
         <img class="card-img-top"
@@ -31,8 +34,10 @@
                 <div class="btn-group">
                     <a href="{% url 'catalog:product' object.pk %}"
                        class="btn btn-sm btn-outline-secondary">Посмотреть</a>
-                    {% if object.owner == request.user or request.user.is_superuser %}
+                    {% if perms.catalog.change_product or object.owner == request.user %}
                     <a href="{% url 'catalog:update_product' object.pk %}" class="btn btn-sm btn-outline-secondary">Изменить</a>
+                    {% endif %}
+                    {% if user.is_superuser or object.owner == request.user %}
                     <a href="{% url 'catalog:delete_product' object.pk %}"
                        class="btn btn-sm btn-outline-danger">Удалить</a>
                     {% endif %}
@@ -41,5 +46,6 @@
         </div>
     </div>
 </div>
+{% endif %}
 {% endfor %}
 {% endblock %}

@@ -17,6 +17,7 @@ class Product(models.Model):
 
     in_stock = models.BooleanField(default=True, verbose_name='В наличии')
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name='продавец')
+    is_published = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.product_name} - {self.product_description}'
@@ -24,6 +25,12 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
+        permissions = [
+            (
+                'set_published',
+                'Can publish products'
+            ),
+        ]
 
 
 class Category(models.Model):
