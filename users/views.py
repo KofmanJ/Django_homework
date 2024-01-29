@@ -10,12 +10,11 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.template.loader import render_to_string
-# from django.template import context
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, UpdateView
-
 from users.forms import UserRegisterForm, UserProfileForm
 from users.models import User
+from users.services import send_new_password
 
 
 def logout_view(request):
@@ -96,14 +95,9 @@ class ProfileView(LoginRequiredMixin, UpdateView):
 
 def generate_new_password(request):
     new_password = User.objects.make_random_password()
-    send_mail(
-        subject='Вы сменили пароль',
-        message=f'Ваш новый пароль: {new_password}',
-        from_email=settings.EMAIL_HOST_USER,
-        recipient_list=[request.user.email],
-    )
     request.user.set_password(new_password)
     request.user.save()
+    send_new_password(request.user.email, new_password)
     return redirect(reverse('catalog:home'))
 
 
